@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAGAYSH - TRIP</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial Black', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow: hidden;
+            cursor: none;
+        }
+
+        /* Psychedelic animated background */
+        .psychedelic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 0, 255, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(0, 255, 255, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 50% 20%, rgba(255, 255, 0, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 50% 80%, rgba(0, 255, 0, 0.3) 0%, transparent 50%);
+            animation: psychedelic 8s ease-in-out infinite;
+            filter: blur(60px);
+        }
+
+        @keyframes psychedelic {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 0.8;
+            }
+            25% {
+                transform: scale(1.2) rotate(90deg);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(0.8) rotate(180deg);
+                opacity: 0.8;
+            }
+            75% {
+                transform: scale(1.1) rotate(270deg);
+                opacity: 0.9;
+            }
+        }
+
+        /* Rotating kaleidoscope glasses */
+        .kaleidoscope {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 300px;
+            z-index: 1;
+        }
+
+        .glass-frame {
+            position: absolute;
+            width: 250px;
+            height: 180px;
+            border: 8px solid;
+            border-radius: 80px;
+            animation: colorCycle 4s linear infinite, rotate3d 10s linear infinite;
+            box-shadow: 
+                0 0 30px currentColor,
+                inset 0 0 30px currentColor;
+        }
+
+        .glass-left {
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            animation-delay: 0s;
+        }
+
+        .glass-right {
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            animation-delay: -2s;
+        }
+
+        .bridge {
+            position: absolute;
+            width: 100px;
+            height: 15px;
+            background: linear-gradient(90deg, transparent, currentColor, transparent);
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            animation: colorCycle 4s linear infinite;
+            animation-delay: -1s;
+            box-shadow: 0 0 20px currentColor;
+        }
+
+        @keyframes colorCycle {
+            0% { color: #ff0000; }
+            16% { color: #ff00ff; }
+            33% { color: #0000ff; }
+            50% { color: #00ffff; }
+            66% { color: #00ff00; }
+            83% { color: #ffff00; }
+            100% { color: #ff0000; }
+        }
+
+        @keyframes rotate3d {
+            0% { transform: translateY(-50%) rotateY(0deg) rotateZ(0deg); }
+            100% { transform: translateY(-50%) rotateY(360deg) rotateZ(360deg); }
+        }
+
+        /* Spiral particles */
+        .spiral-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            transform: translate(-50%, -50%);
+        }
+
+        .spiral-particle {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            animation: spiral 6s linear infinite;
+        }
+
+        @keyframes spiral {
+            0% {
+                transform: rotate(0deg) translateX(0px) scale(1);
+                opacity: 0.7;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: rotate(1080deg) translateX(400px) scale(0.2);
+                opacity: 0.5;
+            }
+        }
+
+        /* Pulsing name */
+        .name-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+
+        .trippy-name {
+            font-size: 120px;
+            font-weight: 900;
+            text-align: center;
+            letter-spacing: 20px;
+            animation: 
+                rainbow 3s linear infinite,
+                glitchWave 0.5s ease-in-out infinite,
+                pulse 2s ease-in-out infinite;
+            text-shadow: 
+                0 0 10px currentColor,
+                0 0 20px currentColor,
+                0 0 40px currentColor,
+                0 0 80px currentColor;
+            filter: blur(1px);
+        }
+
+        @keyframes rainbow {
+            0% { color: #ff0000; }
+            16% { color: #ff00ff; }
+            33% { color: #0000ff; }
+            50% { color: #00ffff; }
+            66% { color: #00ff00; }
+            83% { color: #ffff00; }
+            100% { color: #ff0000; }
+        }
+
+        @keyframes glitchWave {
+            0%, 100% { 
+                transform: skew(0deg);
+                filter: blur(1px);
+            }
+            25% { 
+                transform: skew(-2deg);
+                filter: blur(2px);
+            }
+            75% { 
+                transform: skew(2deg);
+                filter: blur(0px);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { 
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% { 
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        /* Wave lines */
+        .wave-line {
+            position: fixed;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                transparent,
+                #ff0000,
+                #ff00ff,
+                #0000ff,
+                #00ffff,
+                #00ff00,
+                #ffff00,
+                transparent
+            );
+            animation: wave 3s linear infinite;
+            box-shadow: 0 0 20px currentColor;
+        }
+
+        .wave1 { top: 20%; animation-delay: 0s; }
+        .wave2 { top: 40%; animation-delay: -1s; }
+        .wave3 { top: 60%; animation-delay: -2s; }
+        .wave4 { top: 80%; animation-delay: -0.5s; }
+
+        @keyframes wave {
+            0% {
+                transform: translateX(-100%) scaleY(1);
+                opacity: 0.5;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(100%) scaleY(3);
+                opacity: 0.5;
+            }
+        }
+
+        /* Rotating hexagons */
+        .hex-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .hexagon {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            animation: hexFloat 15s ease-in-out infinite;
+        }
+
+        .hexagon::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            animation: colorCycle 4s linear infinite;
+            box-shadow: 0 0 30px currentColor;
+        }
+
+        @keyframes hexFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg) scale(1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translateY(-100px) rotate(180deg) scale(1.5);
+                opacity: 1;
+            }
+        }
+
+        /* Custom cursor with trail */
+        .cursor {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 3px solid;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            animation: colorCycle 2s linear infinite;
+            box-shadow: 
+                0 0 20px currentColor,
+                inset 0 0 20px currentColor;
+            mix-blend-mode: screen;
+        }
+
+        .cursor-trail {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            animation: colorCycle 2s linear infinite;
+            box-shadow: 0 0 10px currentColor;
+        }
+
+        /* Strobing background - DISABLED for smooth experience */
+        .strobe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 100;
+            display: none;
+        }
+
+        /* Geometric explosions */
+        .explosion {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .explosion-piece {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(45deg, #ff0000, #00ffff);
+            animation: explode 4s ease-out infinite;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) rotate(720deg) scale(0);
+                opacity: 0.3;
+            }
+        }
+
+        /* Tunnel effect */
+        .tunnel {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+        }
+
+        .tunnel-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 4px solid;
+            border-radius: 50%;
+            animation: tunnel 3s linear infinite, colorCycle 4s linear infinite;
+        }
+
+        @keyframes tunnel {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 0.8;
+            }
+            100% {
+                width: 200%;
+                height: 200%;
+                opacity: 0.3;
+            }
+        }
+
+        /* Info text */
+        .info {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            letter-spacing: 8px;
+            animation: colorCycle 4s linear infinite;
+            text-shadow: 0 0 10px currentColor;
+            z-index: 20;
+        }
+
+        /* Fractal triangles */
+        .fractal-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .fractal-triangle {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 86px solid;
+            animation: fractalSpin 8s linear infinite, colorCycle 4s linear infinite;
+            filter: drop-shadow(0 0 20px currentColor);
+        }
+
+        @keyframes fractalSpin {
+            0% {
+                transform: rotate(0deg) scale(1);
+                opacity: 0.7;
+            }
+            50% {
+                transform: rotate(180deg) scale(1.5);
+                opacity: 1;
+            }
+            100% {
+                transform: rotate(360deg) scale(1);
+                opacity: 0.7;
+            }
+        }
+
+        /* Mouse-reactive ripples */
+        .ripple {
+            position: fixed;
+            border-radius: 50%;
+            border: 3px solid;
+            pointer-events: none;
+            animation: rippleExpand 1.5s ease-out, colorCycle 1.5s linear;
+        }
+
+        @keyframes rippleExpand {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+            100% {
+                width: 400px;
+                height: 400px;
+                opacity: 0;
+            }
+        }
+
+        /* Mandelbrot-inspired circles */
+        .mandelbrot-circle {
+            position: fixed;
+            border-radius: 50%;
+            border: 2px solid;
+            animation: mandelbrotPulse 6s ease-in-out infinite, colorCycle 3s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes mandelbrotPulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(2);
+                opacity: 0.8;
+            }
+        }
+
+        /* Mouse trail fractals */
+        .mouse-fractal {
+            position: fixed;
+            width: 30px;
+            height: 30px;
+            pointer-events: none;
+            animation: fadeOut 2s ease-out forwards;
+        }
+
+        .mouse-fractal::before,
+        .mouse-fractal::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid;
+            animation: colorCycle 2s linear infinite;
+        }
+
+        .mouse-fractal::before {
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            transform: rotate(0deg);
+        }
+
+        .mouse-fractal::after {
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            transform: rotate(180deg);
+        }
+
+        @keyframes fadeOut {
+            0% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Sierpinski triangles */
+        .sierpinski {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            pointer-events: none;
+        }
+
+        .sierpinski-piece {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 43px solid;
+            animation: colorCycle 4s linear infinite, sierpinskiFloat 10s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px currentColor);
+        }
+
+        @keyframes sierpinskiFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-50px) rotate(180deg);
+            }
+        }
+
+        /* Koch snowflake inspired shapes */
+        .koch-shape {
+            position: fixed;
+            width: 150px;
+            height: 150px;
+            animation: kochRotate 15s linear infinite;
+            pointer-events: none;
+        }
+
+        .koch-shape::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 4px solid;
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+            animation: colorCycle 3s linear infinite;
+            box-shadow: 0 0 30px currentColor;
+        }
+
+        @keyframes kochRotate {
+            0% {
+                transform: rotate(0deg) scale(1);
+            }
+            50% {
+                transform: rotate(180deg) scale(1.3);
+            }
+            100% {
+                transform: rotate(360deg) scale(1);
+            }
+        }
+
+        /* Particle system on mouse move */
+        .particle-burst {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: burstOut 1s ease-out forwards;
+        }
+
+        @keyframes burstOut {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Fibonacci spiral */
+        .fibonacci-spiral {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 500px;
+            height: 500px;
+            border: 3px solid;
+            border-radius: 50%;
+            animation: fibonacciSpin 12s linear infinite, colorCycle 4s linear infinite;
+            pointer-events: none;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        @keyframes fibonacciSpin {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg) scale(0.5);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translate(-50%, -50%) rotate(180deg) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg) scale(0.5);
+                opacity: 0.5;
+            }
+        }
+
+        /* Click explosion effect */
+        .click-explosion {
+            position: fixed;
+            pointer-events: none;
+        }
+
+        .click-ray {
+            position: absolute;
+            width: 4px;
+            height: 100px;
+            background: linear-gradient(to bottom, currentColor, transparent);
+            transform-origin: top center;
+            animation: rayExpand 0.8s ease-out forwards, colorCycle 0.8s linear;
+        }
+
+        @keyframes rayExpand {
+            0% {
+                height: 0;
+                opacity: 1;
+            }
+            100% {
+                height: 150px;
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .trippy-name {
+                font-size: 60px;
+                letter-spacing: 10px;
+            }
+            
+            .kaleidoscope {
+                width: 400px;
+                height: 200px;
+            }
+            
+            .glass-frame {
+                width: 150px;
+                height: 110px;
+            }
+            
+            .bridge {
+                width: 60px;
+            }
+
+            .fractal-triangle {
+                border-left-width: 30px;
+                border-right-width: 30px;
+                border-bottom-width: 52px;
+            }
+
+            .koch-shape {
+                width: 100px;
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Psychedelic background -->
+    <div class="psychedelic-bg"></div>
+
+    <!-- Strobe effect -->
+    <div class="strobe"></div>
+
+    <!-- Fractal triangles -->
+    <div class="fractal-container" id="fractalContainer"></div>
+
+    <!-- Sierpinski triangles -->
+    <div class="sierpinski" id="sierpinskiContainer"></div>
+
+    <!-- Fibonacci spiral -->
+    <div class="fibonacci-spiral"></div>
+
+    <!-- Koch snowflakes -->
+    <div id="kochContainer"></div>
+
+    <!-- Mandelbrot circles -->
+    <div id="mandelbrotContainer"></div>
+
+    <!-- Tunnel rings -->
+    <div class="tunnel" id="tunnelContainer"></div>
+
+    <!-- Wave lines -->
+    <div class="wave-line wave1"></div>
+    <div class="wave-line wave2"></div>
+    <div class="wave-line wave3"></div>
+    <div class="wave-line wave4"></div>
+
+    <!-- Kaleidoscope glasses -->
+    <div class="kaleidoscope">
+        <div class="glass-frame glass-left"></div>
+        <div class="bridge"></div>
+        <div class="glass-frame glass-right"></div>
+    </div>
+
+    <!-- Spiral particles -->
+    <div class="spiral-container" id="spiralContainer"></div>
+
+    <!-- Hexagon container -->
+    <div class="hex-container" id="hexContainer"></div>
+
+    <!-- Explosion -->
+    <div class="explosion" id="explosionContainer"></div>
+
+    <!-- Name -->
+    <div class="name-container">
+        <div class="trippy-name" id="name">NAGAYSH</div>
+    </div>
+
+    <!-- Info -->
+    <div class="info">VISUAL ARCHITECT</div>
+
+    <!-- Custom cursor -->
+    <div class="cursor" id="cursor"></div>
+
+    <script>
+        // Create tunnel rings
+        const tunnelContainer = document.getElementById('tunnelContainer');
+        for (let i = 0; i < 10; i++) {
+            const ring = document.createElement('div');
+            ring.className = 'tunnel-ring';
+            ring.style.animationDelay = `-${i * 0.3}s`;
+            tunnelContainer.appendChild(ring);
+        }
+
+        // Create fractal triangles
+        const fractalContainer = document.getElementById('fractalContainer');
+        for (let i = 0; i < 30; i++) {
+            const triangle = document.createElement('div');
+            triangle.className = 'fractal-triangle';
+            triangle.style.left = Math.random() * 100 + '%';
+            triangle.style.top = Math.random() * 100 + '%';
+            triangle.style.animationDelay = `-${Math.random() * 8}s`;
+            triangle.style.animationDuration = (6 + Math.random() * 6) + 's';
+            triangle.style.transform = `rotate(${Math.random() * 360}deg) scale(${0.5 + Math.random()})`;
+            fractalContainer.appendChild(triangle);
+        }
+
+        // Create Sierpinski triangles
+        const sierpinskiContainer = document.getElementById('sierpinskiContainer');
+        function createSierpinski(level, x, y, size) {
+            if (level === 0) {
+                const triangle = document.createElement('div');
+                triangle.className = 'sierpinski-piece';
+                triangle.style.left = x + 'px';
+                triangle.style.top = y + 'px';
+                triangle.style.animationDelay = `-${Math.random() * 10}s`;
+                sierpinskiContainer.appendChild(triangle);
+            } else {
+                const newSize = size / 2;
+                createSierpinski(level - 1, x, y, newSize);
+                createSierpinski(level - 1, x + newSize, y, newSize);
+                createSierpinski(level - 1, x + newSize / 2, y + newSize, newSize);
+            }
+        }
+        createSierpinski(3, 0, 0, 300);
+
+        // Create Koch snowflake shapes
+        const kochContainer = document.getElementById('kochContainer');
+        for (let i = 0; i < 8; i++) {
+            const koch = document.createElement('div');
+            koch.className = 'koch-shape';
+            koch.style.left = Math.random() * 100 + '%';
+            koch.style.top = Math.random() * 100 + '%';
+            koch.style.animationDelay = `-${Math.random() * 15}s`;
+            kochContainer.appendChild(koch);
+        }
+
+        // Create Mandelbrot-inspired circles
+        const mandelbrotContainer = document.getElementById('mandelbrotContainer');
+        for (let i = 0; i < 12; i++) {
+            const circle = document.createElement('div');
+            circle.className = 'mandelbrot-circle';
+            const size = 50 + i * 30;
+            circle.style.width = size + 'px';
+            circle.style.height = size + 'px';
+            circle.style.left = '50%';
+            circle.style.top = '50%';
+            circle.style.animationDelay = `-${i * 0.5}s`;
+            mandelbrotContainer.appendChild(circle);
+        }
+
+        // Create spiral particles
+        const spiralContainer = document.getElementById('spiralContainer');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'spiral-particle';
+            particle.style.left = '50%';
+            particle.style.top = '50%';
+            particle.style.animationDelay = `-${i * 0.12}s`;
+            particle.style.background = `hsl(${i * 7}, 100%, 50%)`;
+            spiralContainer.appendChild(particle);
+        }
+
+        // Create hexagons
+        const hexContainer = document.getElementById('hexContainer');
+        for (let i = 0; i < 15; i++) {
+            const hex = document.createElement('div');
+            hex.className = 'hexagon';
+            hex.style.left = Math.random() * 100 + '%';
+            hex.style.top = Math.random() * 100 + '%';
+            hex.style.animationDelay = `-${Math.random() * 15}s`;
+            hex.style.animationDuration = (10 + Math.random() * 10) + 's';
+            hexContainer.appendChild(hex);
+        }
+
+        // Create explosion pieces
+        const explosionContainer = document.getElementById('explosionContainer');
+        for (let i = 0; i < 36; i++) {
+            const piece = document.createElement('div');
+            piece.className = 'explosion-piece';
+            const angle = (i / 36) * Math.PI * 2;
+            const distance = 300;
+            piece.style.setProperty('--tx', Math.cos(angle) * distance + 'px');
+            piece.style.setProperty('--ty', Math.sin(angle) * distance + 'px');
+            piece.style.animationDelay = `-${i * 0.05}s`;
+            explosionContainer.appendChild(piece);
+        }
+
+        // Mouse-reactive ripples on move
+        let rippleTimeout;
+        document.addEventListener('mousemove', (e) => {
+            clearTimeout(rippleTimeout);
+            rippleTimeout = setTimeout(() => {
+                const ripple = document.createElement('div');
+                ripple.className = 'ripple';
+                ripple.style.left = e.clientX + 'px';
+                ripple.style.top = e.clientY + 'px';
+                ripple.style.transform = 'translate(-50%, -50%)';
+                document.body.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 1500);
+            }, 50);
+
+            // Create mouse trail fractals
+            if (Math.random() > 0.95) {
+                const fractal = document.createElement('div');
+                fractal.className = 'mouse-fractal';
+                fractal.style.left = e.clientX + 'px';
+                fractal.style.top = e.clientY + 'px';
+                document.body.appendChild(fractal);
+                setTimeout(() => fractal.remove(), 2000);
+            }
+
+            // Particle burst on fast movement
+            if (Math.random() > 0.98) {
+                for (let i = 0; i < 8; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle-burst';
+                    particle.style.left = e.clientX + 'px';
+                    particle.style.top = e.clientY + 'px';
+                    particle.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                    const angle = (i / 8) * Math.PI * 2;
+                    const distance = 50 + Math.random() * 50;
+                    particle.style.setProperty('--tx', Math.cos(angle) * distance + 'px');
+                    particle.style.setProperty('--ty', Math.sin(angle) * distance + 'px');
+                    document.body.appendChild(particle);
+                    setTimeout(() => particle.remove(), 1000);
+                }
+            }
+        });
+
+        // Click explosion effect
+        document.addEventListener('click', (e) => {
+            const explosion = document.createElement('div');
+            explosion.className = 'click-explosion';
+            explosion.style.left = e.clientX + 'px';
+            explosion.style.top = e.clientY + 'px';
+            
+            for (let i = 0; i < 16; i++) {
+                const ray = document.createElement('div');
+                ray.className = 'click-ray';
+                ray.style.transform = `rotate(${i * 22.5}deg)`;
+                ray.style.animationDelay = `${i * 0.02}s`;
+                explosion.appendChild(ray);
+            }
+            
+            document.body.appendChild(explosion);
+            setTimeout(() => explosion.remove(), 800);
+
+            // Create ripple waves on click
+            for (let i = 0; i < 3; i++) {
+                setTimeout(() => {
+                    const ripple = document.createElement('div');
+                    ripple.className = 'ripple';
+                    ripple.style.left = e.clientX + 'px';
+                    ripple.style.top = e.clientY + 'px';
+                    ripple.style.transform = 'translate(-50%, -50%)';
+                    ripple.style.animationDelay = `${i * 0.2}s`;
+                    document.body.appendChild(ripple);
+                    setTimeout(() => ripple.remove(), 1500);
+                }, i * 200);
+            }
+        });
+
+        // Custom cursor
+        const cursor = document.getElementById('cursor');
+        const trails = [];
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let cursorX = mouseX;
+        let cursorY = mouseY;
+
+        // Create cursor trails
+        for (let i = 0; i < 10; i++) {
+            const trail = document.createElement('div');
+            trail.className = 'cursor-trail';
+            trail.style.animationDelay = `-${i * 0.2}s`;
+            document.body.appendChild(trail);
+            trails.push({
+                element: trail,
+                x: mouseX,
+                y: mouseY
+            });
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            // Smooth cursor movement
+            const dx = mouseX - cursorX;
+            const dy = mouseY - cursorY;
+            cursorX += dx * 0.2;
+            cursorY += dy * 0.2;
+            
+            cursor.style.left = cursorX - 20 + 'px';
+            cursor.style.top = cursorY - 20 + 'px';
+
+            // Animate trails
+            trails.forEach((trail, index) => {
+                const prevTrail = index === 0 ? { x: cursorX, y: cursorY } : trails[index - 1];
+                const dx = prevTrail.x - trail.x;
+                const dy = prevTrail.y - trail.y;
+                trail.x += dx * 0.3;
+                trail.y += dy * 0.3;
+                trail.element.style.left = trail.x - 5 + 'px';
+                trail.element.style.top = trail.y - 5 + 'px';
+            });
+
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Glitch effect on name
+        const nameEl = document.getElementById('name');
+        setInterval(() => {
+            if (Math.random() > 0.9) {
+                nameEl.style.transform = `translate(${Math.random() * 10 - 5}px, ${Math.random() * 10 - 5}px)`;
+                setTimeout(() => {
+                    nameEl.style.transform = 'translate(0, 0)';
+                }, 50);
+            }
+        }, 100);
+
+        // Random color explosions
+        setInterval(() => {
+            const explosion = document.createElement('div');
+            explosion.style.position = 'fixed';
+            explosion.style.left = Math.random() * 100 + '%';
+            explosion.style.top = Math.random() * 100 + '%';
+            explosion.style.width = '200px';
+            explosion.style.height = '200px';
+            explosion.style.borderRadius = '50%';
+            explosion.style.background = `radial-gradient(circle, hsl(${Math.random() * 360}, 100%, 50%), transparent)`;
+            explosion.style.animation = 'explode 1s ease-out forwards';
+            explosion.style.pointerEvents = 'none';
+            document.body.appendChild(explosion);
+            setTimeout(() => explosion.remove(), 1000);
+        }, 2000);
+
+        // Kaleidoscope rotation on mouse move
+        const kaleidoscope = document.querySelector('.kaleidoscope');
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 30;
+            const y = (e.clientY / window.innerHeight - 0.5) * 30;
+            kaleidoscope.style.transform = `translate(-50%, -50%) rotateY(${x}deg) rotateX(${-y}deg)`;
+        });
+
+        // Fractal triangles react to mouse
+        document.addEventListener('mousemove', (e) => {
+            const triangles = document.querySelectorAll('.fractal-triangle');
+            const mouseXPercent = e.clientX / window.innerWidth;
+            const mouseYPercent = e.clientY / window.innerHeight;
+            
+            triangles.forEach((triangle, index) => {
+                const rect = triangle.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                const distance = Math.sqrt(Math.pow(e.clientX - centerX, 2) + Math.pow(e.clientY - centerY, 2));
+                
+                if (distance < 200) {
+                    const scale = 1 + (200 - distance) / 200;
+                    triangle.style.transform = `scale(${scale}) rotate(${distance}deg)`;
+                } else {
+                    triangle.style.transform = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
